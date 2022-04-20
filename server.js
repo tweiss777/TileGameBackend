@@ -1,14 +1,12 @@
 import express from 'express'
 import 'dotenv/config';
+import { userRouter } from './routes/signupRoutes.js';
 const PORT = process.env.PORT
 
 const app = express();
 app.use(express.json())
 
-
-app.get('/main',(req,res) => {
-    res.send('fuck you')
-} )
+app.use('/user',userRouter)
 
 
 app.listen(PORT, () =>{
