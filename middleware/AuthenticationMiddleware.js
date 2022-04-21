@@ -20,7 +20,7 @@ export function validateNewUser(req,res,next){
         res.status(401).send(errors)
         return;
     }
-    next()
+    next() 
 
 
 
@@ -34,8 +34,9 @@ export function validateExistingUser(req,res,next){
         password: req.body.password,
     }
 
-    if(user.username.trim().length === 0 || !user.password.trim().length === 0){
+    if(user.username.trim().length === 0 || user.password.trim().length === 0){
         res.status(401).send('One or more fields is missing')
+        return
     } 
     next()
 }
