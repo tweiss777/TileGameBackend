@@ -2,7 +2,7 @@ export function signUp(req,res,next){
     
     
     try{
-        
+       res.send('Credentials valid creating user') 
     }
     catch(error){
         next(error)

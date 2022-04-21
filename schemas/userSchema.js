@@ -1,4 +1,4 @@
-import Ajv, { JSONSchemaType } from "ajv/dist/ajv";
+import Ajv from 'ajv';
 import ajvErrors from 'ajv-errors';
 
 const ajv = new Ajv({allErrors:true})
@@ -7,7 +7,7 @@ ajvErrors(ajv)
 
 ajv.addKeyword({
     keyword:"canBeEmpty",
-    validate: (schema,data) => typeof data === 'string' && data.trim !== ''
+    validate: (schema,data) => typeof data === 'string' && data.trim().length != 0
 })
 
 ajv.addKeyword({
@@ -56,7 +56,7 @@ const userSchema = {
         }
         
     },
-    required: ['email','firstName','lastName','passWord']
+    // required: ['email','firstName','lastName','password']
 }
 
 export const validateUser = ajv.compile(userSchema);
