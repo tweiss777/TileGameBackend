@@ -10,3 +10,8 @@ userRouter.route('/login')
 
 userRouter.route('/signup')
 .post(validateNewUser,signUp)
+
+
+
+
+
