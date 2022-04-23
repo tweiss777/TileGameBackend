@@ -1,3 +1,4 @@
+import {bycrypt} from 'bcrypt';
 
 //pass a user object
 export function createUser(user){
