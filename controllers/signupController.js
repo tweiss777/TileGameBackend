@@ -21,4 +21,14 @@ export function login(req,res,next){
 }
 
 
+export function logout(req,res,next){
+    try{
+        res.send('logging user out')
+    }
+    catch(error){
+        next(error)
+    }
+}
+
+
 
