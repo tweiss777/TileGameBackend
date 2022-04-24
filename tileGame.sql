@@ -8,7 +8,7 @@ CREATE TABLE `users` (
   `email` varchar(50) PRIMARY KEY,
   `first_name` varchar(50),
   `last_name` varchar(50),
-  `password` varchar(50)
+  `password` varchar(70)
 );
 
 

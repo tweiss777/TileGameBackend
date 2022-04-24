@@ -30,11 +30,24 @@ export async function createUser(user){
 
 
 export async function getUser(username,password){
-
+    // need to has password
     const connection = await mysql.createConnection(DBCONNECTIONSETTINGS)
-    const [results,fields] = await connection.execute('SELECT `email`,`first_name`,`last_name` FROM `users` WHERE `email` = ?', [username]) 
-    return results
+    const [result,field] = await connection.execute('SELECT * FROM `users` WHERE `email` = ?',[username])
+    const hash = result[0].password;
+    try{
+        if(await bcrypt.compare(password,hash)){
+            return result[0]
+        }
+        else{
+            return null; //?
+        }
+    }
+    catch(error){
+        console.error(error)
+    }
 
+
+    
 }
 
 
