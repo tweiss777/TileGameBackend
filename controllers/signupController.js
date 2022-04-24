@@ -1,5 +1,6 @@
 import { getUser } from "../Services/UserDBFunctions.js"
 import { createUser } from "../Services/UserDBFunctions.js";
+import jsonwebtoken from "jsonwebtoken";
 
 export async function signUp(req,res,next){
     
@@ -12,14 +13,16 @@ export async function signUp(req,res,next){
             last_name: req.body.lastName,
         }
         const success = await createUser(user)
+        const result = await getUser(user.email,user.password);
+        // you may need to put this in a primo
         if(!success){
             res.status(409)
             .send("Username already taken")
-            return
         }
-        res.send("User Sucesfully created");
-
+        res.send(result);
     }
+
+
     catch(error){
         next(error)
     }
@@ -36,10 +39,14 @@ export async function login(req,res,next){
             res.status(401).send("Invalid user or password")
             return
         }
+        const token = jsonwebtoken.sign(results,process.env.SECRETKEY);
+        res.send(token);
+
 
         // should generate a jwt and return it to the client
         // change the result soon.
-        res.send(results)
+
+
     }
     catch(error){
         next(error)

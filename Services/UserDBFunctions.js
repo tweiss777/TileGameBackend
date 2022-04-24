@@ -8,23 +8,24 @@ const SALTROUNDS = 10;
 
 export async function createUser(user){
     const connection = await mysql.createConnection(DBCONNECTIONSETTINGS)
-    const [existing,fields] = await connection.execute('SELECT `email` FROM `users` WHERE email =?',[user.email])
-    if(existing.length >=1){
-        return false
-    }
- 
     //encrypt password
-    bcrypt.hash(user.password,SALTROUNDS, async (err,hash) => {
-        if(err){
-            console.log(err)
-            throw Error(err)
-        }
-        console.log(hash)
-        const [rows,fields] = await connection.execute('INSERT INTO users (email,first_name,last_name,password) VALUES (?, ?, ?, ?)',[user.email,user.first_name,user.last_name,hash])
-        return true
-
-    })
-
+    try{
+        bcrypt.hash(user.password,SALTROUNDS, async (err,hash) => {
+            if(err){
+                console.log(err)
+                throw Error(err)
+            }
+            console.log(hash)
+            const [rows,fields] = await connection.execute('INSERT INTO users (email,first_name,last_name,password) VALUES (?, ?, ?, ?)',[user.email,user.first_name,user.last_name,hash])
+            return true
+    
+        })
+    
+    }
+    catch(error){
+        return false
+    }   
+    return true;
 }
 
 
@@ -39,9 +40,10 @@ export async function getUser(username,password){
             return result[0]
         }
         else{
-            return null; //?
+            return null; 
         }
     }
+    
     catch(error){
         console.error(error)
     }
