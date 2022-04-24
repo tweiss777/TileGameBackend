@@ -2,6 +2,7 @@
 import mysql from 'mysql2/promise'
 import { DBCONNECTIONSETTINGS } from './mysqlSettings.js';
 import bcrypt from 'bcryptjs';
+import * as util from 'util';
 
 
 const SALTROUNDS = 10;
@@ -10,6 +11,7 @@ export async function createUser(user){
     const connection = await mysql.createConnection(DBCONNECTIONSETTINGS)
     //encrypt password
     try{
+
         bcrypt.hash(user.password,SALTROUNDS, async (err,hash) => {
             if(err){
                 console.log(err)

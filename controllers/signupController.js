@@ -40,7 +40,9 @@ export async function login(req,res,next){
             return
         }
         const token = jsonwebtoken.sign(results,process.env.SECRETKEY);
+        
         res.send(token);
+
 
 
         // should generate a jwt and return it to the client
