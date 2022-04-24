@@ -32,7 +32,7 @@ export async function login(req,res,next){
     const PASSWORD = req.body.password; 
     try{
         const results = await getUser(USERNAME,PASSWORD);
-        if(results.length < 1){
+        if(!results){
             res.status(401).send("Invalid user or password")
             return
         }
