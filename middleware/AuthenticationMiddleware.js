@@ -41,7 +41,7 @@ export function validateExistingUser(req,res,next){
     next()
 }
 
-// middleware function that validates if the user is signed on
+// middleware function that validates jwt token if user is signed on if the user is signed on
 export function isSignedOn(req,res,next){
 
 }
