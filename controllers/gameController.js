@@ -22,7 +22,7 @@ export async function addScore(req,res,next){
 
 export async function getLastScore(req,res,next){
     try{
-        const email = req.body.email;
+        const email = req.params.email;
         const result = await getLastScoreFromDB(email)
         if(result){
             res.send(result)
@@ -38,7 +38,7 @@ export async function getLastScore(req,res,next){
 
 export async function getHighScore(req,res,next){
     try{
-        const email = req.body.email
+        const email = req.params.email
         const result = await getHighScoreFromDB(email)
         if(result){
             res.send(result)
