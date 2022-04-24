@@ -36,6 +36,8 @@ export async function login(req,res,next){
             res.status(401).send("Invalid user or password")
             return
         }
+
+        // should generate a jwt and return it to the client
         // change the result soon.
         res.send(results)
     }
