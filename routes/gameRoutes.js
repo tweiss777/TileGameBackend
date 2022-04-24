@@ -7,9 +7,9 @@ gameRouter.route('/addscore')
     .post(addScore)
 
 
-gameRouter.route('/getlastscore')
+gameRouter.route('/getlastscore/:email')
     .get(getLastScore)
 
 
-gameRouter.route('/getHighScore')
+gameRouter.route('/getHighScore/:email')
     .get(getHighScore)

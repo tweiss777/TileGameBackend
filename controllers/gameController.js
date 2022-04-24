@@ -1,6 +1,18 @@
-export function addScore(req,res,next){
+import { addScoreToDB, getHighScoreFromDB, getLastScoreFromDB } from "../Services/GameDBFunctions.js";
+
+export async function addScore(req,res,next){
     try{
-        res.send('add score')
+        const scoreData = {
+            score: req.body.score,
+            email: req.body.email,
+            date: req.body.date
+        }
+
+        const rows = await addScoreToDB(scoreData);
+        if(rows){
+            res.send("Score saved");
+        }
+        res.status(500).send("Something went wrong");
     }
     catch(error){
         next(error)
@@ -8,9 +20,14 @@ export function addScore(req,res,next){
 }
 
 
-export function getLastScore(req,res,next){
+export async function getLastScore(req,res,next){
     try{
-res.send('get last score')
+        const email = req.params.email;
+        const result = await getLastScoreFromDB(email)
+        if(result){
+            res.send(result)
+        }
+
     }
     catch(error){
         next(error)
@@ -19,9 +36,14 @@ res.send('get last score')
 
 } 
 
-export function getHighScore(req,res,next){
+export async function getHighScore(req,res,next){
     try{
-res.send('get high score')
+        const email = req.params.email
+        const result = await getHighScoreFromDB(email)
+        if(result){
+            res.send(result)
+        }
+
     }
     catch(error){
         next(error);

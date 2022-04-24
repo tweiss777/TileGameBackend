@@ -14,7 +14,8 @@ CREATE TABLE `users` (
 
 DROP TABLE IF EXISTS `scores`;
 CREATE TABLE `scores` (
-  `email` varchar(50) PRIMARY KEY,
+  `score_id` int PRIMARY KEY AUTO_INCREMENT,
+  `email` varchar(50) ,
   `score` integer,
   `score_date` datetime
 );
@@ -22,8 +23,10 @@ CREATE TABLE `scores` (
 ALTER TABLE `scores` ADD FOREIGN KEY (`email`) REFERENCES `users` (`email`);
 
 
-INSERT INTO `users` (email,first_name,last_name,password) VALUES ('tweiss747@gmail.com','Tal','Weiss','abc123');
-INSERT INTO `users` (email,first_name,last_name,password) VALUES ('DennisG@gmail.com','Dennis','Goldberg','abc123');
+INSERT INTO `users` (email,first_name,last_name,password) VALUES ('tweiss747@gmail.com','Tal','Weiss','$2a$10$jfDjGp2LOGQaKPnqLAJYu.96VY.aFCQtjozw1HPcH38yBmcvKVUEu');
+INSERT INTO `users` (email,first_name,last_name,password) VALUES ('DennisG@gmail.com','Dennis','Goldberg','$2a$10$jfDjGp2LOGQaKPnqLAJYu.96VY.aFCQtjozw1HPcH38yBmcvKVUEu
+');
 
-
+INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',222222,'1993-11-09 00:00:00.00');
+INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',223334,'1993-11-09 00:00:00.00');
 
