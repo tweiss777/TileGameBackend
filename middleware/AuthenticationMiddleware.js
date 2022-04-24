@@ -1,4 +1,5 @@
 import { validateUser } from "../schemas/userSchema.js"
+import jsonwebtoken from "jsonwebtoken";
 // when the user creates the account
 // validate via json schema using ajv
 export function validateNewUser(req,res,next){
@@ -43,6 +44,17 @@ export function validateExistingUser(req,res,next){
 
 // middleware function that validates jwt token if user is signed on if the user is signed on
 export function isSignedOn(req,res,next){
+
+    const [bearer,token] = req.header('Authorization').split(" ");
+    try{
+        let decoded = jsonwebtoken.verify(token,process.env.SECRETKEY);
+        next();
+    }
+    catch(error){
+        res.status(401).send("Unathorized: signing out")
+    }
+    
+
 
 }
 

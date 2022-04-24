@@ -45,12 +45,6 @@ export async function login(req,res,next){
         
         res.send(token);
 
-
-
-        // should generate a jwt and return it to the client
-        // change the result soon.
-
-
     }
     catch(error){
         next(error)
