@@ -4,7 +4,6 @@ import 'dotenv/config'
 
 
 
-const PORT = process.env.DBPORT;
 const USER = process.env.USER;
 const PASSWORD = process.env.PASSWORD;
 const DATABASE = process.env.DATABASE;
