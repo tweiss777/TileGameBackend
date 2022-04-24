@@ -1,6 +1,6 @@
-import { addScoreToDB } from "../Services/GameDBFunctions.js";
+import { addScoreToDB, getHighScoreFromDB, getLastScoreFromDB } from "../Services/GameDBFunctions.js";
 
-export function addScore(req,res,next){
+export async function addScore(req,res,next){
     try{
         const scoreData = {
             score: req.body.score,
@@ -8,7 +8,7 @@ export function addScore(req,res,next){
             date: req.body.date
         }
 
-        const rows = addScoreToDB(scoreData);
+        const rows = await addScoreToDB(scoreData);
         if(rows){
             res.send("Score saved");
         }
@@ -20,9 +20,13 @@ export function addScore(req,res,next){
 }
 
 
-export function getLastScore(req,res,next){
+export async function getLastScore(req,res,next){
     try{
-        
+        const email = req.body.email;
+        const result = await getLastScoreFromDB(email)
+        if(result){
+            res.send(result)
+        }
 
     }
     catch(error){
@@ -32,9 +36,14 @@ export function getLastScore(req,res,next){
 
 } 
 
-export function getHighScore(req,res,next){
+export async function getHighScore(req,res,next){
     try{
-res.send('get high score')
+        const email = req.body.email
+        const result = await getHighScoreFromDB(email)
+        if(result){
+            res.send(result)
+        }
+
     }
     catch(error){
         next(error);

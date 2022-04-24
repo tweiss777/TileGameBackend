@@ -27,6 +27,6 @@ INSERT INTO `users` (email,first_name,last_name,password) VALUES ('tweiss747@gma
 INSERT INTO `users` (email,first_name,last_name,password) VALUES ('DennisG@gmail.com','Dennis','Goldberg','$2a$10$jfDjGp2LOGQaKPnqLAJYu.96VY.aFCQtjozw1HPcH38yBmcvKVUEu
 ');
 
-INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',222222,'1993-11-09');
-INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',223334,'1993-11-09');
+INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',222222,'1993-11-09 00:00:00.00');
+INSERT INTO `scores` (email,score,score_date) VALUES ('tweiss747@gmail.com',223334,'1993-11-09 00:00:00.00');
 
