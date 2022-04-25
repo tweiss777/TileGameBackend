@@ -17,7 +17,7 @@ export async function signUp(req,res,next){
         // you may need to put this in a primo
         if(!success){
             res.status(409)
-            .send("Username already taken")
+            .send(["Username already taken"])
             return 
         }
         const token = jsonwebtoken.sign(user,process.env.SECRETKEY)

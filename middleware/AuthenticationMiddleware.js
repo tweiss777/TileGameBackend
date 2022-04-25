@@ -11,13 +11,12 @@ export function validateNewUser(req,res,next){
     }
     const confirmPassword = req.body.confirmPassword;
     if(confirmPassword != user.password){
-        res.status(401).send('Passwords do not match')
+        res.status(401).send(['Passwords do not match'])
         return //not sure if i need a return here....
     }
     const valid = validateUser(user);
     if(!valid){
         const errors = validateUser.errors.map(err => err.message)
-        console.log(errors)
         res.status(401).send(errors)
         return;
     }
