@@ -19,7 +19,7 @@ export async function addScoreToDB(scoreData){
 export async function getLastScoreFromDB(email){
     const connection = await mysql.createConnection(DBCONNECTIONSETTINGS)
     try{
-        const [result,field] = await connection.execute('SELECT score FROM scores WHERE email = ? ORDER BY score_date ASC LIMIT 1',[email])
+        const [result,field] = await connection.execute('SELECT score FROM scores WHERE email = ? ORDER BY score_date DESC LIMIT 1',[email])
         return result[0]
     }
     catch(error){

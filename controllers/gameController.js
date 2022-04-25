@@ -11,6 +11,7 @@ export async function addScore(req,res,next){
         const rows = await addScoreToDB(scoreData);
         if(rows){
             res.send("Score saved");
+            return
         }
         res.status(500).send("Something went wrong");
     }

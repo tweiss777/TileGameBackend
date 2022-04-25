@@ -45,9 +45,9 @@ export function validateExistingUser(req,res,next){
 // middleware function that validates jwt token if user is signed on if the user is signed on
 export function isSignedOn(req,res,next){
 
-    const [bearer,token] = req.header('Authorization').split(" ");
     try{
-        let decoded = jsonwebtoken.verify(token,process.env.SECRETKEY);
+        const [_bearer,token] = req.headers['authorization'].split(" ");
+        const _decoded = jsonwebtoken.verify(token,process.env.SECRETKEY);
         next();
     }
     catch(error){

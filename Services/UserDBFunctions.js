@@ -38,14 +38,18 @@ export async function getUser(username, password) {
     "SELECT * FROM `users` WHERE `email` = ?",
     [username]
   );
-  const hash = result[0].password;
-  try {
-    if (await bcrypt.compare(password, hash)) {
-      return result[0];
-    } else {
-      return null; //?
+  if(result.length > 0){
+    const hash = result[0].password;
+
+    try {
+      if (await bcrypt.compare(password, hash)) {
+        return result[0];
+      } else {
+        return null; //?
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
   }
+  return null;
 }

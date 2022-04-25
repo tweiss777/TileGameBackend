@@ -18,6 +18,7 @@ export async function signUp(req,res,next){
         if(!success){
             res.status(409)
             .send("Username already taken")
+            return 
         }
         const token = jsonwebtoken.sign(user,process.env.SECRETKEY)
         res.send(token)
@@ -41,9 +42,12 @@ export async function login(req,res,next){
             res.status(401).send("Invalid user or password")
             return
         }
-        const token = jsonwebtoken.sign(results,process.env.SECRETKEY);
+        else{
+            const token = jsonwebtoken.sign(results,process.env.SECRETKEY);
         
-        res.send(token);
+            res.send(token);
+        }
+        
 
     }
     catch(error){

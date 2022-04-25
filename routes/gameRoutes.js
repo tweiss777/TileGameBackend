@@ -11,5 +11,5 @@ gameRouter.route('/getlastscore/:email')
     .get(getLastScore)
 
 
-gameRouter.route('/getHighScore/:email')
+gameRouter.route('/gethighscore/:email')
     .get(getHighScore)
