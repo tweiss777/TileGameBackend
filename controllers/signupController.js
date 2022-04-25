@@ -13,13 +13,15 @@ export async function signUp(req,res,next){
             last_name: req.body.lastName,
         }
         const success = await createUser(user)
-        const result = await getUser(user.email,user.password);
+        
         // you may need to put this in a primo
         if(!success){
             res.status(409)
             .send("Username already taken")
         }
-        res.send(result);
+        const token = jsonwebtoken.sign(user,process.env.SECRETKEY)
+        res.send(token)
+        
     }
 
 
